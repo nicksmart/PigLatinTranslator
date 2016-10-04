@@ -17,7 +17,8 @@ using namespace std;
 const string GetInputString();
 bool FindWordInDictionary(string word);
 vector<string> ParseString(const string input);
-string EnglishToPigLatin(vector<string> EnglishInput, bool useDictionary);
+string EnglishToPigLatin(vector<string> &EnglishInput, bool useDictionary);
+//string PigLatinToEnglish(vector<string> &PigLatinInput, bool useDictionary);
 bool isVowel(char c);
 
 
@@ -134,12 +135,12 @@ vector<string> ParseString(string input) {
 
 
 //Translates the vector of English words into a Pig Latin string
-string EnglishToPigLatin(vector<string> EnglishInput, bool useDictionary) {
+string EnglishToPigLatin(vector<string> &EnglishInput, bool useDictionary) {
     string translated;
     for (string word : EnglishInput) {
         if (useDictionary and !FindWordInDictionary(word)) {
-            cout << "The input string contains words not found in the English Dictionary" << endl;
-            cout << "Exiting program now..." << endl;
+            cerr << "The input string contains words not found in the English Dictionary" << endl;
+            cerr << "Exiting program now..." << endl;
             exit(1);
         }
         
